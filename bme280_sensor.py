@@ -4,9 +4,6 @@ import smbus2
 import RPi.GPIO as GPIO
 import subprocess
 
-def send_report(data):
-    print("Sending weather data to discord...")
-
 class Sensor:
     def __init__(self, port=1, address=0x76):
         # BME280 config
@@ -39,12 +36,9 @@ class Sensor:
         await asyncio.sleep(0.2)
         GPIO.output(self.sampling_led, GPIO.LOW)
 
-        # Add to counter
-        self.time_since_last_wifi_check += 1
-
         return round(self.humidity, 2), round(self.atm_pressure, 2), round(self.ambient_temperature, 2)
 
-    def wifi_check(self):
+    async def wifi_check(self):
         try:
             ps = subprocess.Popen(["iwconfig"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             # Connected to WLAN.

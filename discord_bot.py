@@ -22,7 +22,6 @@ class Bot:
                 await message.channel.send("Hello!")
 
             if message.content.startswith("$weather"):
-                # Get sensor readings from aobayama sensor
                 humidity, pressure, temperature = await self.aobayama_sensor.read()
 
                 reply = f"Current weather conditions:\nTemperature: {temperature}°C\nHumidity = {humidity}%\nPressure = {pressure} atm."
