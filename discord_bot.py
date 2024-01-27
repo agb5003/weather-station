@@ -26,3 +26,4 @@ class Bot:
 
                 reply = f"Current weather conditions:\nTemperature: {temperature}°C\nHumidity = {humidity}%\nPressure = {pressure} atm."
                 await message.channel.send(reply)
+

@@ -55,3 +55,4 @@ class Sensor:
                 GPIO.output(self.wlan_led, GPIO.LOW)
 
         self.time_since_last_wifi_check = 0
+

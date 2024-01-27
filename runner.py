@@ -9,13 +9,15 @@ async def main():
     token = "supersecrettoken"
     bot_task = asyncio.create_task(bot.client.start(token))
 
-    aobayama_sensor.wifi_check()
-    while True:
-        # humidity, pressure, temperature = await aobayama_sensor.read()
+    await aobayama_sensor.wifi_check()
 
+    while True:
         if aobayama_sensor.time_since_last_wifi_check > 5:
-            aobayama_sensor.wifi_check()
+            await aobayama_sensor.wifi_check()
+        
+        aobayama_sensor.time_since_last_wifi_check += 1
 
         await asyncio.sleep(1)
 
 asyncio.run(main())
+
